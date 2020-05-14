@@ -2,17 +2,16 @@
 import openpyxl
 from datetime import datetime
 
-file_name="0513.xlsx"
-kao_name="高二年级5月考试考场安排"
-print("开始编排考号")
-'''
-pip3的使用
-http://www.pip3.cn/archives/81.html
-'''
+#基础参数设置
+file_name="0000.xlsx" #汇总名单文件名
+kao_name="高二年级5月考试考场安排" #本次考试名称
+lie=6		#填充第几列
+#基础参数设置OK
 #设置考场和人数
 Num=[1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20,21,22,23,]
 Stu=[41,41,41,41,41,41,41,41,41,41,41,42,42,40,40,40,40,32,40,40,40,34,34,]
 print("考场总计："+str(len(Num)))
+print("开始编排考号")
 sum=0
 t=0
 while t<len(Num):
@@ -27,7 +26,6 @@ wb = openpyxl.load_workbook(file_name)
 ws = wb.active
 #编排操作
 
-lie=6#设置第几列
 row=2#从第几行开始
 t=0
 
