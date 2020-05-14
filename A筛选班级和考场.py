@@ -3,9 +3,9 @@ import openpyxl
 from datetime import datetime
 from openpyxl.styles import Border,Side
 
-#基础设置
+#基础参数设置
 file_name="AAA.xlsx"#文件名字
-Every_kc=3	#几个考场换行
+Every_next=3	#几个考场换行
 kao_name="高二年级5月考试考场安排"
 
 print("开始筛选数据")
@@ -58,11 +58,11 @@ while i<=rows:
 	Class_num[bj_value]=Class_num[bj_value]+1
 	
 	#复制到对应工作簿的对应位置
-	bj_s=bj_value//4
-	bj_ys=bj_value%4
+	bj_s=bj_value//Every_next
+	bj_ys=bj_value%Every_next
 	if(bj_ys==0):
 		bj_s=bj_s-1
-		bj_ys=4
+		bj_ys=Every_next
 	row=int(bj_s*max_class+Class_num[bj_value])
 	#print(bj_ys*5)
 	sht_bj.cell(row+1,bj_ys*5-4).value=ws.cell(i,1).value
@@ -78,11 +78,11 @@ while i<=rows:
 	kc_value= ws.cell(i,3).value
 	kc_value=int(kc_value)
 	KaoC_num[kc_value]=KaoC_num[kc_value]+1
-	kc_s=kc_value//4
-	kc_ys=kc_value%4
+	kc_s=kc_value//Every_next
+	kc_ys=kc_value%Every_next
 	if(kc_ys==0):
 		kc_s=kc_s-1
-		kc_ys=4
+		kc_ys=Every_next
 	row=int(kc_s*max_kc+KaoC_num[kc_value])
 	#复制过去
 	sht_kc.cell(row+1,kc_ys*5-4).value=ws.cell(i,1).value
@@ -105,12 +105,12 @@ while i<=KaoC_num[0]:
 	#第i考场数据处理
     kc_value=i
     sum=sum+KaoC_num[i]
-    kc_s=kc_value//4
-    kc_ys=kc_value%4
+    kc_s=kc_value//Every_next
+    kc_ys=kc_value%Every_next
     if(kc_ys==0):
         kc_s=kc_s-1
-        kc_ys=4
-    row=int(kc_s*45)
+        kc_ys=Every_next
+    row=int(kc_s*max_kc)
     sht_kc.cell(row+1,kc_ys*5-4).value="姓名"
     sht_kc.cell(row+1,kc_ys*5-3).value="班级"
     sht_kc.cell(row+1,kc_ys*5-2).value="考场"
@@ -129,11 +129,11 @@ while i<=Class_num[0]:
 	#第i考场数据处理
     kc_value=i
     sum=sum+Class_num[i]
-    kc_s=kc_value//4
-    kc_ys=kc_value%4
+    kc_s=kc_value//Every_next
+    kc_ys=kc_value%Every_next
     if(kc_ys==0):
         kc_s=kc_s-1
-        kc_ys=4
+        kc_ys=Every_next
     row=int(kc_s*max_class)
     sht_bj.cell(row+1,kc_ys*5-4).value="姓名"
     sht_bj.cell(row+1,kc_ys*5-3).value="班级"
@@ -151,8 +151,8 @@ print("按班级总数："+str(sum))
 dt = datetime.now()
 #dt= dt.strftime( '%Y-%m-%d %H:%M:%S %f' )
 dt= dt.strftime( '%Y%m%d %H_%M' )
-#wb.save(kao_name+dt+'.xlsx')
-wb.save("AAABBB.xlsx")  # 保存
+wb.save(kao_name+dt+'.xlsx')
+#wb.save("AAABBB.xlsx")  # 保存
 #暂停程序，按键退出
 input("任意键盘结束")
 
