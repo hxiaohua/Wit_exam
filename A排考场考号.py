@@ -3,8 +3,8 @@ import openpyxl
 from datetime import datetime
 
 #基础参数设置
-file_name="0000.xlsx" #汇总名单文件名
-kao_name="高二年级5月考试考场安排" #本次考试名称
+file_name="A0.xlsx" #汇总名单文件名
+kao_name="A1" #本次考试名称
 lie=6		#填充第几列
 #基础参数设置OK
 #设置考场和人数
@@ -56,7 +56,7 @@ while t<len(Num):
 dt = datetime.now()
 #dt= dt.strftime( '%Y-%m-%d %H:%M:%S %f' )
 dt= dt.strftime( '%Y%m%d %H_%M' )
-wb.save(kao_name+dt+'.xlsx')
+wb.save(kao_name+'.xlsx')
 
 print("程序运行结束")
 a = input("任意键盘结束")

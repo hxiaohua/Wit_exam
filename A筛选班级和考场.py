@@ -9,9 +9,9 @@ Every_next=3	#几个考场换行
 kao_name="高二年级5月考试考场安排"
 
 print("开始筛选数据")
-#设置班级或者考场的最大人数
-max_class=80
-max_kc=45
+#设置班级或者考场的最大人数，最好Max+1
+max_class=62
+max_kc=43
 
 #数组下标从0开始
 wb = openpyxl.load_workbook(file_name)
